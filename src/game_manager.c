@@ -16,6 +16,7 @@ void move_duck(duck_t *duck, float time, int nb_ducks);
 void display_ducks(sfRenderWindow *window, duck_t **ducks, int nb_duck);
 int analyse_events(sfRenderWindow *window, sfEvent event, duck_t **duck, int nb_ducks);
 void reset_dead_ducks(duck_t **duck, int nb_ducks);
+void reset_far_ducks(duck_t **ducks, int nb_ducks);
 void destroy_duck(duck_t *duck);
 
 void run_game(sfRenderWindow *window, int nb_ducks)
@@ -37,6 +38,7 @@ void run_game(sfRenderWindow *window, int nb_ducks)
         while (sfRenderWindow_pollEvent(window, &event))
             close_game = analyse_events(window, event, ducks, nb_ducks);
         reset_dead_ducks(ducks, nb_ducks);
+        reset_far_ducks(ducks, nb_ducks);
         sfRenderWindow_display(window);
     }
     for (int i = 0; i < nb_ducks; i++)

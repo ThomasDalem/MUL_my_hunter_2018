@@ -11,7 +11,7 @@ SRC	=	main.c		    \
 		duck_function.c	    \
 		display_ducks.c	    \
 		compare_vectors.c   \
-		reset_dead_ducks.c  \
+		reset_ducks.c	    \
 		change_duck_pos.c   \
 		analyse_event.c
 
