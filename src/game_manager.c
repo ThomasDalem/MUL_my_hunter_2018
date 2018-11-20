@@ -39,7 +39,6 @@ void run_game(sfRenderWindow *window, int nb_ducks)
         reset_dead_ducks(ducks, nb_ducks);
         sfRenderWindow_display(window);
     }
-    for (int i = 0; i < nb_ducks; i++) {
+    for (int i = 0; i < nb_ducks; i++)
         destroy_duck(ducks[i]);
-    }
 }

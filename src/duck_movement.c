@@ -32,7 +32,10 @@ void move_duck(duck_t *duck, float time)
     else if (time - duck->prev_time_moved > 0.002 && duck->is_dead == 1) {
         offset.x = 0;
         offset.y = 1;
-        sfSprite_setRotation(duck->sprite, 90);
+        if (duck->direction == 1)
+            sfSprite_setRotation(duck->sprite, 90);
+        else
+            sfSprite_setRotation(duck->sprite, 240);
         sfSprite_move(duck->sprite, offset);
         duck->prev_time_moved = time;
     }

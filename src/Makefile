@@ -12,6 +12,7 @@ SRC	=	main.c		    \
 		display_ducks.c	    \
 		compare_vectors.c   \
 		reset_dead_ducks.c  \
+		change_duck_pos.c   \
 		analyse_event.c
 
 OBJ	=	$(SRC:.c=.o)
