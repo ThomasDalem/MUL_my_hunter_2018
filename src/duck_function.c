@@ -8,14 +8,17 @@
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Sprite.h>
 #include <stdlib.h>
+#include <time.h>
 #include "my_hunter.h"
 
 duck_t *create_duck(void)
 {
     duck_t *duck = malloc(sizeof(duck_t));
 
+    srand(time(NULL));
     duck->speed = 1;
     duck->is_dead = 0;
+    duck->direction = 1;
     duck->texture = sfTexture_createFromFile("../ressources/duck_anim.png", NULL);
     duck->sprite = sfSprite_create();
     duck->rect.width = 110;
@@ -38,10 +41,11 @@ duck_t **init_ducks(int nb_ducks)
     duck_t **ducks;
     sfVector2f begin_pos;
 
+    srand(time(NULL));
     ducks = malloc(sizeof(duck_t *) * nb_ducks);
     for (int i = 0; i < nb_ducks; i++) {
-        begin_pos.x = 0;
-        begin_pos.y = i * 90;
+        begin_pos.x = -200;
+        begin_pos.y = rand() % 400;
         ducks[i] = create_duck();
         sfSprite_setPosition(ducks[i]->sprite, begin_pos);
     }

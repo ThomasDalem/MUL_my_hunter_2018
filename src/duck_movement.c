@@ -22,17 +22,17 @@ void move_duck(duck_t *duck, float time)
 {
     sfVector2f offset;
 
-    offset.x = 1;
-    offset.y = 0;
-    move_rect(duck, time);
     if (time - duck->prev_time_moved > 0.004 && duck->is_dead == 0) {
+        offset.x = duck->speed * duck->direction;
+        offset.y = 0;
+        move_rect(duck, time);
         sfSprite_move(duck->sprite, offset);
         duck->prev_time_moved = time;
     }
-    else if (duck->is_dead == 1) {
+    else if (time - duck->prev_time_moved > 0.002 && duck->is_dead == 1) {
         offset.x = 0;
-        offset.y = 3;
-        sfSprite_rotate(duck->sprite, 90);
+        offset.y = 1;
+        sfSprite_setRotation(duck->sprite, 90);
         sfSprite_move(duck->sprite, offset);
         duck->prev_time_moved = time;
     }

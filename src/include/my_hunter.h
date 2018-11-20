@@ -11,6 +11,7 @@
 typedef struct duck {
     int speed;
     int is_dead;
+    int direction;
     sfTexture *texture;
     sfSprite *sprite;
     sfIntRect rect;
