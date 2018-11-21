@@ -21,14 +21,15 @@ sfRenderWindow *create_window(int width, int height)
     video_mode.height = height;
     video_mode.bitsPerPixel = 32;
     window = sfRenderWindow_create(video_mode, "MyHunter", sfDefaultStyle, NULL);
+    sfRenderWindow_setFramerateLimit(window, 60);
     return (window);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     sfRenderWindow *window;
-    int width = 800;
-    int height = 600;
+    int width = 1920;
+    int height = 1080;
     int nb_ducks = 3;
     int choice = 0;
     sfEvent event;

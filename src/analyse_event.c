@@ -22,7 +22,7 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
     mouse_pos.y = event.mouseButton.y;
     for (int i = 0; i < nb_ducks; i++) {
         duck_pos = sfSprite_getPosition(duck[i]->sprite);
-        if (compare_vectors(mouse_pos, duck_pos, duck[i]->direction) == 1) {
+        if (compare_vectors(mouse_pos, duck_pos, duck[i]->direction) && duck[i]->is_dead != 1) {
             duck[i]->is_dead = 1;
             write(1, "Duck killed\n", 12);
             score++;

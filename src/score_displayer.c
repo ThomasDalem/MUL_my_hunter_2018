@@ -29,13 +29,14 @@ char *convert_to_string(int number)
         num2 /= 10;
         i++;
     }
+    str[i] = '\0';
     my_revstr(str);
     return (str);
 }
 
 sfText *init_text(void)
 {
-    sfFont *font = sfFont_createFromFile("../ressources/main_font.otf");
+    sfFont *font = sfFont_createFromFile("../ressources/BebasNeue_Regular.otf");
     sfText *text = sfText_create();
 
     sfText_setFont(text, font);
@@ -43,24 +44,19 @@ sfText *init_text(void)
     return (text);
 }
 
-char *concat_str(char *str1, char *str2)
+char *concat_str(char const *str1, char const *str2)
 {
-    int str_len1 = my_strlen(str1);
-    int str_len2 = my_strlen(str2);
-    char *result_str;
+    char *str = malloc(sizeof(char) * (my_strlen(str1) + my_strlen(str2) + 1));
 
-    result_str = malloc(sizeof(char) * (str_len1 + str_len2 + 1));
-    for (int i = 0; i < str_len1; i++)
-        result_str[i] = str1[i];
-    for (int i = 0; i < str_len2; i++)
-        result_str[str_len1 + i] = str2[i];
-    return (result_str);
+    my_strcpy(str, str1);
+    my_strcat(str, str2);
+    return (str);
 }
 
 void display_score(sfText *text, int score)
 {
     char *str_score = convert_to_string(score);
-    char str_begin[8] = "Score : ";
+    char *str_begin = "Score:";
     char *new_str = concat_str(str_begin, str_score);
     
     sfText_setString(text, new_str);
