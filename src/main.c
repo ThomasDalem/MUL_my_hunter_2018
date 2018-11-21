@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 void run_game(sfRenderWindow *window, int nb_ducks);
+int analyse_menu_events(sfRenderWindow *window, sfEvent event);
 
 sfRenderWindow *create_window(int width, int height)
 {
@@ -29,9 +30,13 @@ int main(void)
     int width = 800;
     int height = 600;
     int nb_ducks = 3;
+    int choice = 0;
+    sfEvent event;
 
     window = create_window(width, height);
     while (sfRenderWindow_isOpen(window)) {
+//        while (sfRenderWindow_pollEvent(window, &event) && choice == 0)
+//            choice = analyse_menu_events();
         run_game(window, nb_ducks);
     }
     sfRenderWindow_destroy(window);

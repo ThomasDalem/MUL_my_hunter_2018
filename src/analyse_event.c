@@ -31,7 +31,7 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
     return (score);
 }
 
-int analyse_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, int nb_ducks)
+int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, int nb_ducks)
 {
     int score = 0;
 
@@ -41,4 +41,12 @@ int analyse_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, int nb
         sfRenderWindow_close(window);
     }
     return (score);
+}
+
+int analyse_menu_events(sfRenderWindow *window, sfEvent event)
+{
+    if (event.type == sfEvtMouseButtonPressed)
+        return (1);
+    if (event.type == sfEvtMouseButtonPressed)
+        return (2);
 }

@@ -5,15 +5,15 @@
 ## Makefile
 ##
 
-SRC	=	main.c		    \
-		game_manager.c	    \
-		duck_movement.c	    \
-		duck_function.c	    \
-		display_ducks.c	    \
-		compare_vectors.c   \
-		reset_ducks.c	    \
-		change_duck_pos.c   \
-		end_game.c	    \
+SRC	=	main.c					\
+		game_manager.c			\
+		duck_movement.c			\
+		duck_function.c			\
+		compare_vectors.c	    \
+		reset_ducks.c		    \
+		end_game.c			    \
+		score_displayer.c	    \
+		change_duck_pos.c	    \
 		analyse_event.c
 
 OBJ	=	$(SRC:.c=.o)

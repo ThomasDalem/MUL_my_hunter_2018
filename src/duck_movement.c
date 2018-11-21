@@ -40,3 +40,9 @@ void move_duck(duck_t *duck, float time)
         duck->prev_time_moved = time;
     }
 }
+
+void move_ducks(duck_t **ducks, int nb_ducks, float time)
+{
+    for (int i = 0; i < nb_ducks; i++)
+        move_duck(ducks[i], time);
+}
