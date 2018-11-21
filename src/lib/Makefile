@@ -6,7 +6,11 @@
 ##
 
 SRC	=	my_putchar.c	\
-		my_putstr.c	\
+		my_putstr.c		\
+		my_revstr.c		\
+		my_strcat.c		\
+		my_strlen.c		\
+		my_strcpy.c		\
 		my_put_nbr.c
 
 OBJ	=	$(SRC:.c=.o)

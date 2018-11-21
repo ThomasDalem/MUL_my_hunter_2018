@@ -19,7 +19,8 @@ void reset_dead_ducks(duck_t **duck, int nb_ducks);
 void reset_far_ducks(duck_t **ducks, int nb_ducks);
 void destroy_ducks(duck_t **ducks, int nb_ducks);
 void end_game(duck_t **ducks, int nb_ducks, int score);
-void display_score(sfRenderWindow *window, int score);
+sfText *init_text(sfRenderWindow *window, int score);
+void display_score(sfText *text, int score);
 
 void run_game(sfRenderWindow *window, int nb_ducks)
 {
@@ -30,10 +31,12 @@ void run_game(sfRenderWindow *window, int nb_ducks)
     duck_t **ducks = init_ducks(nb_ducks);
     int close_game = 0;
     int score = 0;
+    sfText *text = init_text(window, score);
 
-    display_score(window, 10);
     while (sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
+        display_score(text, score);
+        sfRenderWindow_drawText(window, text, NULL);
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
         display_ducks(window, ducks, nb_ducks);

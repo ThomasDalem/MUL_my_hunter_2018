@@ -18,9 +18,3 @@ void end_game(duck_t **ducks, int nb_ducks, int score)
     my_put_nbr(score);
     write(1, "\n", 1);
 }
-
-int main(int argc, char const *argv[])
-{
-    /* code */
-    return 0;
-}

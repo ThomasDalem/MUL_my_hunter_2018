@@ -13,6 +13,7 @@ SRC	=	main.c					\
 		reset_ducks.c		    \
 		end_game.c			    \
 		score_displayer.c	    \
+		display_ducks.c			\
 		change_duck_pos.c	    \
 		analyse_event.c
 
