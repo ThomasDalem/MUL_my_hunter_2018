@@ -12,10 +12,11 @@
 
 int compare_vectors(sfVector2f vector1, sfVector2f vector2, int duck_scale);
 
-void check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
+int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
 {
     sfVector2f mouse_pos;
     sfVector2f duck_pos;
+    int score = 0;
 
     mouse_pos.x = event.mouseButton.x;
     mouse_pos.y = event.mouseButton.y;
@@ -24,17 +25,20 @@ void check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
         if (compare_vectors(mouse_pos, duck_pos, duck[i]->direction) == 1) {
             duck[i]->is_dead = 1;
             write(1, "Duck killed\n", 12);
+            score++;
         }
     }
+    return (score);
 }
 
 int analyse_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, int nb_ducks)
 {
+    int score = 0;
+
     if (event.type == sfEvtMouseButtonPressed)
-        check_if_hit(event, ducks, nb_ducks);
+        score = check_if_hit(event, ducks, nb_ducks);
     if (event.type == sfEvtClosed) {
         sfRenderWindow_close(window);
-        return (1);
     }
-    return (0);
+    return (score);
 }

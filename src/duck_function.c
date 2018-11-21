@@ -29,11 +29,13 @@ duck_t *create_duck(void)
     duck->prev_time_rect_moved = 0.0;
 }
 
-void destroy_duck(duck_t *duck)
+void destroy_ducks(duck_t **ducks, int nb_ducks)
 {
-    sfSprite_destroy(duck->sprite);
-    sfTexture_destroy(duck->texture);
-    free(duck);
+    for (int i = 0; i < nb_ducks; i++) {
+        sfSprite_destroy(ducks[i]->sprite);
+        sfTexture_destroy(ducks[i]->texture);
+        free(ducks[i]);
+    }
 }
 
 duck_t **init_ducks(int nb_ducks)
@@ -45,7 +47,7 @@ duck_t **init_ducks(int nb_ducks)
     ducks = malloc(sizeof(duck_t *) * nb_ducks);
     for (int i = 0; i < nb_ducks; i++) {
         begin_pos.x = -200;
-        begin_pos.y = rand() % 400;
+        begin_pos.y = i * 100;
         ducks[i] = create_duck();
         sfSprite_setPosition(ducks[i]->sprite, begin_pos);
     }

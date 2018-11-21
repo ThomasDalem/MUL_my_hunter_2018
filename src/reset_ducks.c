@@ -24,8 +24,7 @@ void reset_far_ducks(duck_t **ducks, int nb_ducks)
         if (duck_pos.x > 1000 || duck_pos.x < -200) {
             write(1, "Duck outside the screen\n", 24);
             change_duck_pos(ducks[i], new_pos.y);
-            ducks[i]->speed += 1;
-        }
+         }
     }
 }
 
@@ -43,7 +42,7 @@ void reset_dead_ducks(duck_t **ducks, int nb_ducks)
             write(1, "Duck outside the screen\n", 24);
             change_duck_pos(ducks[i], new_pos.y);
             ducks[i]->is_dead = 0;
-            ducks[i]->speed += 1; //<- It works but it's too fast after 2 or 3 times
+            //    ducks[i]->speed += 1;
         }
     }
 }
