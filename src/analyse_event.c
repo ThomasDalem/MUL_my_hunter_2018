@@ -16,14 +16,18 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
 {
     sfVector2f mouse_pos;
     sfVector2f duck_pos;
+    sfVector2f move_dead;
     int score = 0;
 
+    move_dead.y = 0;
     mouse_pos.x = event.mouseButton.x;
     mouse_pos.y = event.mouseButton.y;
     for (int i = 0; i < nb_ducks; i++) {
         duck_pos = sfSprite_getPosition(duck[i]->sprite);
         if (compare_vectors(mouse_pos, duck_pos, duck[i]->direction) && duck[i]->is_dead != 1) {
             duck[i]->is_dead = 1;
+            move_dead.x = 110 * duck[i]->direction;
+            sfSprite_move(duck[i]->sprite, move_dead);
             write(1, "Duck killed\n", 12);
             score++;
         }
@@ -37,9 +41,8 @@ int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, i
 
     if (event.type == sfEvtMouseButtonPressed)
         score = check_if_hit(event, ducks, nb_ducks);
-    if (event.type == sfEvtClosed) {
+    if (event.type == sfEvtClosed)
         sfRenderWindow_close(window);
-    }
     return (score);
 }
 

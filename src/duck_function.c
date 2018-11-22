@@ -47,10 +47,14 @@ duck_t **init_ducks(int nb_ducks, sfRenderWindow *window)
 
     srand(time(NULL));
     ducks = malloc(sizeof(duck_t *) * nb_ducks);
+    if (ducks == NULL)
+        return (NULL);
     for (int i = 0; i < nb_ducks; i++) {
         begin_pos.x = -200;
         begin_pos.y = i * 100;
         ducks[i] = create_duck(window_size);
+        if (ducks[i] == NULL)
+            return (NULL);
         sfSprite_setPosition(ducks[i]->sprite, begin_pos);
     }
     return (ducks);
