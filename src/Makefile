@@ -17,7 +17,7 @@ SRC	=	main.c					\
 		change_duck_pos.c	    \
 		menu_manager.c			\
 		button_displayer.c		\
-		button_funtions.c		\
+		button_functions.c		\
 		analyse_event.c
 
 OBJ	=	$(SRC:.c=.o)

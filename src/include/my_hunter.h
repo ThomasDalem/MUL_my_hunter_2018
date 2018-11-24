@@ -23,6 +23,7 @@ typedef struct button {
     sfTexture *texture;
     sfSprite *sprite;
     sfVector2f pos;
+    int choice;
 } button_t;
 
 void my_putchar(char c);

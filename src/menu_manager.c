@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Sprite.h>
 #include "my_hunter.h"
 
-int analyse_menu_events(sfRenderWindow *window, sfEvent event);
+int analyse_menu_events(sfRenderWindow *window, sfEvent event, button_t **buttons);
 void display_buttons(sfRenderWindow *window, button_t **buttons);
 button_t **init_buttons(sfRenderWindow *window);
 void destroy_buttons(button_t **buttons);
@@ -24,8 +24,10 @@ void run_menu(sfRenderWindow *window)
         sfRenderWindow_clear(window, sfBlack);
         display_buttons(window, buttons);
         while (sfRenderWindow_pollEvent(window, &event))
-            choice = analyse_menu_events(window, event);
+            choice = analyse_menu_events(window, event, buttons);
         sfRenderWindow_display(window);
+        if (choice == 2)
+            sfRenderWindow_close(window);
     }
     destroy_buttons(buttons);
 }
