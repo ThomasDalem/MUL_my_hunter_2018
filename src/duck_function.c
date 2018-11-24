@@ -21,7 +21,6 @@ duck_t *create_duck(sfVector2u window_size)
     duck->direction = 1;
     duck->texture = sfTexture_createFromFile("../ressources/duck_anim.png", NULL);
     duck->sprite = sfSprite_create();
-    
     duck->rect.width = 110;
     duck->rect.height = 110;
     duck->rect.left = 0;
@@ -51,7 +50,7 @@ duck_t **init_ducks(int nb_ducks, sfRenderWindow *window)
         return (NULL);
     for (int i = 0; i < nb_ducks; i++) {
         begin_pos.x = -200;
-        begin_pos.y = i * 100;
+        begin_pos.y = (i * 110) % window_size.y;
         ducks[i] = create_duck(window_size);
         if (ducks[i] == NULL)
             return (NULL);

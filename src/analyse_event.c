@@ -26,6 +26,7 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
         duck_pos = sfSprite_getPosition(duck[i]->sprite);
         if (compare_vectors(mouse_pos, duck_pos, duck[i]->direction) && duck[i]->is_dead != 1) {
             duck[i]->is_dead = 1;
+
             move_dead.x = 110 * duck[i]->direction;
             sfSprite_move(duck[i]->sprite, move_dead);
             write(1, "Duck killed\n", 12);
@@ -50,6 +51,7 @@ int analyse_menu_events(sfRenderWindow *window, sfEvent event)
 {
     if (event.type == sfEvtMouseButtonPressed)
         return (1);
-    if (event.type == sfEvtMouseButtonPressed)
-        return (2);
+    if (event.type == sfEvtClosed)
+        sfRenderWindow_close(window);
+    return (0);
 }

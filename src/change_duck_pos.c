@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "my_hunter.h"
 
-void change_duck_pos(duck_t *duck, int new_pos_y, int x)
+int change_duck_pos(duck_t *duck, int new_pos_y, int x)
 {
     sfVector2f scale;
     sfVector2f begin_pos;
@@ -31,4 +31,5 @@ void change_duck_pos(duck_t *duck, int new_pos_y, int x)
     sfSprite_setPosition(duck->sprite, begin_pos);
     sfSprite_setScale(duck->sprite, scale);
     sfSprite_setRotation(duck->sprite, 0);
+    return(rand());
 }

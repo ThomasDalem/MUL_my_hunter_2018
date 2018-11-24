@@ -19,6 +19,12 @@ typedef struct duck {
     float prev_time_rect_moved;
 } duck_t;
 
+typedef struct button {
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f pos;
+} button_t;
+
 void my_putchar(char c);
 void my_putstr(char const *str);
 int my_put_nbr(int nb);
