@@ -41,7 +41,7 @@ int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, i
 {
     int score = 0;
 
-    if (event.type == sfEvtMouseButtonPressed)
+    if (event.mouseButton.button == sfMouseLeft)
         score = check_if_hit(event, ducks, nb_ducks);
     if (event.type == sfEvtClosed)
         sfRenderWindow_close(window);

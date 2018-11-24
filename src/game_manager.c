@@ -24,12 +24,17 @@ void reset_ducks(duck_t **ducks, int nb_ducks, sfRenderWindow *window);
 void put_background(sfSprite *sprite, sfRenderWindow *window)
 {
     sfTexture *background;
+    sfVector2u window_size = sfRenderWindow_getSize(window);
+    sfVector2f scale;
 
+    scale.x = window_size.x / 1920.0;
+    scale.y = window_size.y / 1080.0;
     if (sfSprite_getTexture(sprite) != NULL)
         sfRenderWindow_drawSprite(window, sprite, NULL);
     else {
-        background = sfTexture_createFromFile("../ressources/Landscape.png", NULL);
+        background = sfTexture_createFromFile("../ressources/game_background.jpg", NULL);
         sfSprite_setTexture(sprite, background, sfTrue);
+        sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);
     }
 }
