@@ -49,6 +49,7 @@ void run_game(sfRenderWindow *window, int nb_ducks)
     sfSprite *sprite = sfSprite_create();
     int score = 0;
     sfText *text = init_text(window, score);
+    int nb_lives = 3;
 
     while (sfRenderWindow_isOpen(window)) {
         if (ducks == NULL)

@@ -14,13 +14,17 @@
 duck_t *create_duck(sfVector2u window_size)
 {
     duck_t *duck = malloc(sizeof(duck_t));
+    sfVector2f scale;
 
+    scale.x = window_size.x; // A change pour le scale
+    scale.y = scale.x;
     srand(time(NULL));
     duck->speed = 7;
     duck->is_dead = 0;
     duck->direction = 1;
     duck->texture = sfTexture_createFromFile("../ressources/duck_anim.png", NULL);
     duck->sprite = sfSprite_create();
+    sfSprite_setScale(duck->sprite, scale);
     duck->rect.width = 110;
     duck->rect.height = 110;
     duck->rect.left = 0;
