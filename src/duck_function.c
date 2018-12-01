@@ -11,12 +11,13 @@
 #include <time.h>
 #include "my_hunter.h"
 
-duck_t *create_duck(sfVector2u window_size)
+duck_t *create_duck(sfVector2u window_size, sfRenderWindow *window)
 {
     duck_t *duck = malloc(sizeof(duck_t));
     sfVector2f scale;
 
-    scale.x = window_size.x; // A change pour le scale
+    check_malloc(window, duck);
+    scale.x = 1; // A change pour le scale
     scale.y = scale.x;
     srand(time(NULL));
     duck->speed = 7;
@@ -50,12 +51,13 @@ duck_t **init_ducks(int nb_ducks, sfRenderWindow *window)
 
     srand(time(NULL));
     ducks = malloc(sizeof(duck_t *) * nb_ducks);
+    check_malloc(window, ducks);
     if (ducks == NULL)
         return (NULL);
     for (int i = 0; i < nb_ducks; i++) {
         begin_pos.x = -200;
         begin_pos.y = (i * 110) % window_size.y;
-        ducks[i] = create_duck(window_size);
+        ducks[i] = create_duck(window_size, window);
         if (ducks[i] == NULL)
             return (NULL);
         sfSprite_setPosition(ducks[i]->sprite, begin_pos);

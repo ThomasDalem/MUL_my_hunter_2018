@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Sprite.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "my_hunter.h"
 
 void run_game(sfRenderWindow *window, int nb_ducks);
@@ -30,11 +31,15 @@ sfRenderWindow *create_window(int width, int height)
 int main(int ac, char **av)
 {
     sfRenderWindow *window;
-    int width = my_getnbr(av[1]);
-    int height = my_getnbr(av[2]);
+    int width = 800;
+    int height = 600;
     int nb_ducks = 3;
     sfEvent event;
 
+    if (av[1] == "-h") {
+        write(1, "My_Hunter project 2018\n", 23);
+        return (0);
+    }
     window = create_window(width, height);
     while (sfRenderWindow_isOpen(window)) {
         run_menu(window);

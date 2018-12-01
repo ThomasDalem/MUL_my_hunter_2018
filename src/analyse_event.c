@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include "my_hunter.h"
 
-int compare_ducks_vectors(sfVector2f vector1, sfVector2f vector2, int duck_scale);
+int compare_ducks_vectors(sfVector2f vector1, sfVector2f vector2, int duck_scale, duck_t *duck);
 int compare_buttons_vectors(sfVector2f vector1, sfVector2f vector2, int size_x, int size_y);
 void run_menu(sfRenderWindow *window);
 
@@ -26,7 +26,7 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
     mouse_pos.y = event.mouseButton.y;
     for (int i = 0; i < nb_ducks; i++) {
         duck_pos = sfSprite_getPosition(duck[i]->sprite);
-        if (compare_ducks_vectors(mouse_pos, duck_pos, duck[i]->direction) && duck[i]->is_dead != 1) {
+        if (compare_ducks_vectors(mouse_pos, duck_pos, duck[i]->direction, duck[i]) && duck[i]->is_dead != 1) {
             duck[i]->is_dead = 1;
             move_dead.x = 110 * duck[i]->direction;
             sfSprite_move(duck[i]->sprite, move_dead);
@@ -77,4 +77,13 @@ int analyse_menu_events(sfRenderWindow *window, sfEvent event, button_t **button
     if (event.type == sfEvtClosed)
         sfRenderWindow_close(window);
     return (0);
+}
+
+int get_events(sfRenderWindow *window, sfEvent *event, duck_t **ducks, int nb_ducks)
+{
+    int score = 0;
+
+    while (sfRenderWindow_pollEvent(window, event))
+        score += analyse_game_events(window, *event, ducks, nb_ducks);
+    return (score);
 }

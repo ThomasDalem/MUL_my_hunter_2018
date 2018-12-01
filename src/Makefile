@@ -18,6 +18,7 @@ SRC	=	main.c					\
 		menu_manager.c			\
 		button_displayer.c		\
 		button_functions.c		\
+		check_malloc.c			\
 		analyse_event.c
 
 OBJ	=	$(SRC:.c=.o)
