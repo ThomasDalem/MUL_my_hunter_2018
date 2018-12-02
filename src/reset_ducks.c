@@ -28,7 +28,6 @@ void reset_far_ducks(duck_t *ducks, infos_t *game_inf, sfRenderWindow *window)
             write(1, "Duck outside the screen\n", 24);
             new_rand_pos = change_duck_pos(ducks, new_pos.y, window_size.x);
             game_inf->lives -= 1;
-            my_put_nbr(game_inf->lives);
          }
     }
 }

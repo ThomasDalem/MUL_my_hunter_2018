@@ -11,7 +11,7 @@ SRC	=	main.c					\
 		duck_function.c			\
 		compare_vectors.c	    \
 		reset_ducks.c		    \
-		end_game.c			    \
+		end_level.c			    \
 		score_displayer.c	    \
 		display_ducks.c			\
 		change_duck_pos.c	    \
@@ -21,11 +21,13 @@ SRC	=	main.c					\
 		check_malloc.c			\
 		display_cursor.c		\
 		game_functions.c		\
+		end_manager.c			\
+		health_displayer.c		\
 		analyse_event.c
 
 OBJ	=	$(SRC:.c=.o)
 
-FLAGS	=	-lcsfml-graphics -lcsfml-system -L. -lmy -Iinclude
+FLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio -L. -lmy -Iinclude
 
 LIBPATH	=	./lib/
 

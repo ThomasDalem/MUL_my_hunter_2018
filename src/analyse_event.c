@@ -7,7 +7,10 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Window/Event.h>
 #include <SFML/Graphics/Sprite.h>
+#include <SFML/Audio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <time.h>
 #include "my_hunter.h"
 
 int compare_ducks_vectors(sfVector2f vector1, sfVector2f vector2, int duck_scale, duck_t *duck);
@@ -21,6 +24,7 @@ int check_if_hit(sfEvent event, duck_t **duck, infos_t *game_inf)
     sfVector2f move_dead;
     int score = 0;
 
+    srand(time(NULL));
     move_dead.y = 0;
     mouse_pos.x = event.mouseButton.x;
     mouse_pos.y = event.mouseButton.y;
@@ -31,7 +35,8 @@ int check_if_hit(sfEvent event, duck_t **duck, infos_t *game_inf)
             move_dead.x = 110 * duck[i]->direction;
             sfSprite_move(duck[i]->sprite, move_dead);
             write(1, "Duck killed\n", 12);
-            game_inf->score += 1;
+            game_inf->score += 100;
+            duck[i]->speed += 0.5 + rand() % 1;
         }
     }
     return (score);
@@ -40,13 +45,17 @@ int check_if_hit(sfEvent event, duck_t **duck, infos_t *game_inf)
 int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, infos_t *game_inf)
 {
     int score = 0;
-
-    if (event.mouseButton.button == sfMouseLeft)
+    if (event.type == sfEvtMouseButtonPressed) {
+        sfSound_play(game_inf->sound);
         check_if_hit(event, ducks, game_inf);
+    }
     if (event.type == sfEvtClosed)
         sfRenderWindow_close(window);
-    if (event.key.code == sfKeyEscape)
+    if (event.key.code == sfKeyEscape) {
+        sfSound_pause(game_inf->duck_sound);
         run_menu(window);
+        sfSound_play(game_inf->duck_sound);
+    }
     return (score);
 }
 

@@ -5,6 +5,8 @@
 ** Displays the scor on the screen
 */
 #include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Text.h>
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/Color.h>
@@ -53,11 +55,12 @@ char *concat_str(char const *str1, char const *str2)
     return (str);
 }
 
-void display_score(sfText *text, infos_t *game_infos)
+void display_score(sfText *text, infos_t *game_infos, sfSprite *health, sfRenderWindow *window)
 {
     char *str_score = convert_to_string(game_infos->score);
     char *str_begin = "Score:";
     char *new_str = concat_str(str_begin, str_score);
     
+    display_heatlh(window, health, game_infos->lives);
     sfText_setString(text, new_str);
 }

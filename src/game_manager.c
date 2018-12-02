@@ -8,12 +8,13 @@
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/System.h>
+#include <SFML/Audio.h>
 #include <unistd.h>
 #include "my_hunter.h"
 
 void put_background(sfSprite *sprite, sfRenderWindow *window)
 {
-    sfTexture *background;
+    sfTexture *backgrnd;
     sfVector2u window_size = sfRenderWindow_getSize(window);
     sfVector2f scale;
 
@@ -22,8 +23,8 @@ void put_background(sfSprite *sprite, sfRenderWindow *window)
     if (sfSprite_getTexture(sprite) != NULL)
         sfRenderWindow_drawSprite(window, sprite, NULL);
     else {
-        background = sfTexture_createFromFile("../ressources/game_background.jpg", NULL);
-        sfSprite_setTexture(sprite, background, sfTrue);
+        backgrnd = sfTexture_createFromFile("../ressources/bckgrnd.jpg", NULL);
+        sfSprite_setTexture(sprite, backgrnd, sfTrue);
         sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);
     }
@@ -40,18 +41,21 @@ void run_game(sfRenderWindow *window, int nb_ducks)
     sfSprite *cursor = sfSprite_create();
     sfText *text = init_text();
     infos_t *game_inf = init_game(nb_ducks);
+    sfSprite *health = sfSprite_create();
 
-    while (game_inf->lives > 0) {
+    while (game_inf->lives > 0 && sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
-        display_score(text, game_inf);
         put_background(background, window);
         sfRenderWindow_drawText(window, text, NULL);
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
         display_ducks(window, ducks, game_inf, seconds);
         get_events(window, &event, ducks, game_inf);
+        display_score(text, game_inf, health, window);
         sfRenderWindow_display(window);
     }
     end_game(ducks, background, nb_ducks, text);
-    sfRenderWindow_close(window);
+    write(1, "Score : ", 8);
+    my_put_nbr(game_inf->score);
+    write(1, "\n", 1);
 }

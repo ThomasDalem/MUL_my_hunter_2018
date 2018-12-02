@@ -9,8 +9,17 @@
 #include <SFML/Graphics/Sprite.h>
 #include "my_hunter.h"
 
+void display_one_button(sfRenderWindow *window, button_t *button)
+{
+    sfRenderWindow_drawSprite(window, button->sprite, NULL);
+}
+
 void display_buttons(sfRenderWindow *window, button_t **buttons)
 {
-    for (int i = 0; i < 2; i++)
-        sfRenderWindow_drawSprite(window, buttons[i]->sprite, NULL);
+    int i = 0;
+
+    while (i < 2) {
+        display_one_button(window, buttons[i]);
+        i++;
+    }
 }
