@@ -54,6 +54,7 @@ void run_game(sfRenderWindow *window, int nb_ducks)
         display_score(text, game_inf, health, window);
         sfRenderWindow_display(window);
     }
+    sfSound_stop(game_inf->duck_sound);
     end_game(ducks, background, nb_ducks, text);
     write(1, "Score : ", 8);
     my_put_nbr(game_inf->score);
