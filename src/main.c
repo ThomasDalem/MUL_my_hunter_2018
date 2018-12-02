@@ -31,8 +31,8 @@ sfRenderWindow *create_window(int width, int height)
 int main(int ac, char **av)
 {
     sfRenderWindow *window;
-    int width = 800;
-    int height = 600;
+    int width = 1920;
+    int height = 1080;
     int nb_ducks = 3;
     sfEvent event;
 

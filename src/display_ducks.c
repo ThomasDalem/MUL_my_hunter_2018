@@ -9,9 +9,11 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include "my_hunter.h"
 
-void display_ducks(sfRenderWindow *window, duck_t **ducks, int nb_ducks, float time)
+void display_ducks(sfRenderWindow *window, duck_t **ducks, infos_t *game_infos, float time)
 {
-    reset_ducks(ducks, nb_ducks, window);
+    int nb_ducks = game_infos->nb_ducks;
+
+    reset_ducks(ducks, game_infos, window);
     move_ducks(ducks, nb_ducks, time);
     for (int i = 0; i < nb_ducks; i++) {
         sfSprite_setTexture(ducks[i]->sprite, ducks[i]->texture, sfTrue);

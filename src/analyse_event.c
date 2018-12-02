@@ -14,7 +14,7 @@ int compare_ducks_vectors(sfVector2f vector1, sfVector2f vector2, int duck_scale
 int compare_buttons_vectors(sfVector2f vector1, sfVector2f vector2, int size_x, int size_y);
 void run_menu(sfRenderWindow *window);
 
-int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
+int check_if_hit(sfEvent event, duck_t **duck, infos_t *game_inf)
 {
     sfVector2f mouse_pos;
     sfVector2f duck_pos;
@@ -24,25 +24,25 @@ int check_if_hit(sfEvent event, duck_t **duck, int nb_ducks)
     move_dead.y = 0;
     mouse_pos.x = event.mouseButton.x;
     mouse_pos.y = event.mouseButton.y;
-    for (int i = 0; i < nb_ducks; i++) {
+    for (int i = 0; i < game_inf->nb_ducks; i++) {
         duck_pos = sfSprite_getPosition(duck[i]->sprite);
         if (compare_ducks_vectors(mouse_pos, duck_pos, duck[i]->direction, duck[i]) && duck[i]->is_dead != 1) {
             duck[i]->is_dead = 1;
             move_dead.x = 110 * duck[i]->direction;
             sfSprite_move(duck[i]->sprite, move_dead);
             write(1, "Duck killed\n", 12);
-            score++;
+            game_inf->score += 1;
         }
     }
     return (score);
 }
 
-int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, int nb_ducks)
+int analyse_game_events(sfRenderWindow *window, sfEvent event, duck_t **ducks, infos_t *game_inf)
 {
     int score = 0;
 
     if (event.mouseButton.button == sfMouseLeft)
-        score = check_if_hit(event, ducks, nb_ducks);
+        check_if_hit(event, ducks, game_inf);
     if (event.type == sfEvtClosed)
         sfRenderWindow_close(window);
     if (event.key.code == sfKeyEscape)
@@ -79,11 +79,12 @@ int analyse_menu_events(sfRenderWindow *window, sfEvent event, button_t **button
     return (0);
 }
 
-int get_events(sfRenderWindow *window, sfEvent *event, duck_t **ducks, int nb_ducks)
+int get_events(sfRenderWindow *window, sfEvent *event, duck_t **ducks, infos_t *game_inf)
 {
     int score = 0;
 
     while (sfRenderWindow_pollEvent(window, event))
-        score += analyse_game_events(window, *event, ducks, nb_ducks);
+        analyse_game_events(window, *event, ducks, game_inf);
+    display_cursor(window, *event);
     return (score);
 }

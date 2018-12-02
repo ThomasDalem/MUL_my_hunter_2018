@@ -40,6 +40,7 @@ void run_menu(sfRenderWindow *window)
     sfSprite *background = sfSprite_create();
     sfSprite *title = sfSprite_create();
 
+    sfRenderWindow_setMouseCursorVisible(window, sfTrue);
     while (choice == 0 && sfRenderWindow_isOpen(window)) {
         sfRenderWindow_clear(window, sfBlack);
         display_background(window, background);

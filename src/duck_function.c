@@ -48,16 +48,18 @@ duck_t **init_ducks(int nb_ducks, sfRenderWindow *window)
     duck_t **ducks;
     sfVector2f begin_pos;
     sfVector2u window_size = sfRenderWindow_getSize(window);
+    int y = 1;
 
-    srand(time(NULL));
     ducks = malloc(sizeof(duck_t *) * nb_ducks);
     check_malloc(window, ducks);
     if (ducks == NULL)
         return (NULL);
     for (int i = 0; i < nb_ducks; i++) {
+        srand(time(NULL) + y);
         begin_pos.x = -200;
-        begin_pos.y = (i * 110) % window_size.y;
+        begin_pos.y = rand() % window_size.y * 0.5;
         ducks[i] = create_duck(window_size, window);
+        y += 327;
         if (ducks[i] == NULL)
             return (NULL);
         sfSprite_setPosition(ducks[i]->sprite, begin_pos);

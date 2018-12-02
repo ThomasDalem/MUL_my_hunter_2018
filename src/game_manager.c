@@ -38,19 +38,20 @@ void run_game(sfRenderWindow *window, int nb_ducks)
     duck_t **ducks = init_ducks(nb_ducks, window);
     sfSprite *background = sfSprite_create();
     sfSprite *cursor = sfSprite_create();
-    int score = 0;
     sfText *text = init_text();
+    infos_t *game_inf = init_game(nb_ducks);
 
-    while (sfRenderWindow_isOpen(window)) {
+    while (game_inf->lives > 0) {
         sfRenderWindow_clear(window, sfBlack);
-        display_score(text, score);
+        display_score(text, game_inf);
         put_background(background, window);
         sfRenderWindow_drawText(window, text, NULL);
         time = sfClock_getElapsedTime(clock);
         seconds = time.microseconds / 1000000.0;
-        score += get_events(window, &event, ducks, nb_ducks);
-        display_ducks(window, ducks, nb_ducks, seconds);
+        display_ducks(window, ducks, game_inf, seconds);
+        get_events(window, &event, ducks, game_inf);
         sfRenderWindow_display(window);
     }
-    end_game(ducks, background, nb_ducks, score);
+    end_game(ducks, background, nb_ducks, text);
+    sfRenderWindow_close(window);
 }
