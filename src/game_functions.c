@@ -12,14 +12,16 @@
 infos_t *init_game(int nb_ducks)
 {
     infos_t *game_values;
+    char *shot_path = "./assets/shot.ogg";
+    char *duck_sound = "./assets/duck.ogg";
 
     game_values = malloc(sizeof(infos_t));
     game_values->lives = 3;
     game_values->score = 0;
     game_values->nb_ducks = nb_ducks;
-    game_values->sound_buffer = sfSoundBuffer_createFromFile("../ressources/shot.ogg");
+    game_values->sound_buffer = sfSoundBuffer_createFromFile(shot_path);
     game_values->sound = sfSound_create();
-    game_values->sound_buffer2 = sfSoundBuffer_createFromFile("../ressources/duck.ogg");
+    game_values->sound_buffer2 = sfSoundBuffer_createFromFile(duck_sound);
     game_values->duck_sound = sfSound_create();
     sfSound_setBuffer(game_values->sound, game_values->sound_buffer);
     sfSound_setBuffer(game_values->duck_sound, game_values->sound_buffer2);

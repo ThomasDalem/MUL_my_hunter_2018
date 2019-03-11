@@ -9,7 +9,6 @@
 
 void check_malloc(sfRenderWindow *window, void *ptr)
 {
-    if (ptr == NULL) {
+    if (ptr == NULL)
         sfRenderWindow_close(window);
-    }
 }

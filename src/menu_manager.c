@@ -20,7 +20,7 @@ void display_background(sfRenderWindow *window, sfSprite *sprite)
     if (sfSprite_getTexture(sprite) != NULL)
         sfRenderWindow_drawSprite(window, sprite, NULL);
     else {
-        background = sfTexture_createFromFile("../ressources/bckgrnd.jpg", NULL);
+        background = sfTexture_createFromFile("./assets/bckgrnd.jpg", NULL);
         sfSprite_setTexture(sprite, background, sfTrue);
         sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);
@@ -43,7 +43,7 @@ void display_title(sfRenderWindow *window, sfSprite *sprite)
         sfRenderWindow_drawSprite(window, sprite, NULL);
     }
     else {
-        background = sfTexture_createFromFile("../ressources/title.png", NULL);
+        background = sfTexture_createFromFile("./assets/title.png", NULL);
         sfSprite_setTexture(sprite, background, sfTrue);
         sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);

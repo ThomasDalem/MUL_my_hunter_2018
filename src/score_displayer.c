@@ -38,7 +38,7 @@ char *convert_to_string(int number)
 
 sfText *init_text(void)
 {
-    sfFont *font = sfFont_createFromFile("../ressources/BebasNeue_Regular.otf");
+    sfFont *font = sfFont_createFromFile("./assets/BebasNeue_Regular.otf");
     sfText *text = sfText_create();
 
     sfText_setFont(text, font);

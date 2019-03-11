@@ -43,7 +43,7 @@ void display_heatlh(sfRenderWindow *window, sfSprite *sprite, int health_cnt)
         change_rect(sprite, health_cnt);
         sfRenderWindow_drawSprite(window, sprite, NULL);
     } else {
-        health_texture = sfTexture_createFromFile("../ressources/health.png", NULL);
+        health_texture = sfTexture_createFromFile("./assets/health.png", NULL);
         sfSprite_setTexture(sprite, health_texture, sfTrue);
         sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);

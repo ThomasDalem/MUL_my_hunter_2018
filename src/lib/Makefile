@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC	=	my_putchar.c	\
+SRC	=	my_putchar.c		\
 		my_putstr.c		\
 		my_revstr.c		\
 		my_strcat.c		\
@@ -22,13 +22,13 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -c $(SRC)
-	ar rc ../$(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	rm -f $(OBJ)
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f ../$(NAME)
+	rm -f $(NAME)
 
 re: fclean all

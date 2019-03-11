@@ -12,7 +12,7 @@
 
 void display_cursor(sfRenderWindow *window, sfEvent event)
 {
-    sfTexture *texture = sfTexture_createFromFile("../ressources/cursor.png", NULL);
+    sfTexture *texture = sfTexture_createFromFile("./assets/cursor.png", NULL);
     sfSprite *sprite = sfSprite_create();
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(window);
     sfVector2f pos;

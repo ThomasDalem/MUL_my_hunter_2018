@@ -35,13 +35,15 @@ button_t **init_menu_buttons(sfRenderWindow *window)
     button_t **buttons;
     sfVector2f button_pos;
     sfVector2u window_size = sfRenderWindow_getSize(window);
+    char *play_path = "./assets/Play_button.png";
+    char *quit_path = "./assets/Exit_button.png";
 
     buttons = malloc(sizeof(button_t *) * 2);
     button_pos.x = window_size.x / 2;
     button_pos.y = window_size.y / 2;
-    buttons[0] = create_button(button_pos, "../ressources/Play_button.png", window_size, 1);
+    buttons[0] = create_button(button_pos, play_path, window_size, 1);
     button_pos.y += window_size.y / 2 * 0.5;
-    buttons[1] = create_button(button_pos, "../ressources/Exit_button.png", window_size, 2);
+    buttons[1] = create_button(button_pos, quit_path, window_size, 2);
     return (buttons);
 }
 
@@ -50,13 +52,15 @@ button_t **init_end_buttons(sfRenderWindow *window)
     button_t **buttons;
     sfVector2f button_pos;
     sfVector2u window_size = sfRenderWindow_getSize(window);
+    char *retry_path = "./assets/retry_button.png";
+    char *quit_path = "./assets/Exit_button.png";
 
     buttons = malloc(sizeof(button_t *) * 2);
     button_pos.x = window_size.x / 2;
     button_pos.y = window_size.y / 2;
-    buttons[0] = create_button(button_pos, "../ressources/retry_button.png", window_size, 1);
+    buttons[0] = create_button(button_pos, retry_path, window_size, 1);
     button_pos.y += window_size.y / 2 * 0.5;
-    buttons[1] = create_button(button_pos, "../ressources/Exit_button.png", window_size, 2);
+    buttons[1] = create_button(button_pos, quit_path, window_size, 2);
     return (buttons);
 }
 

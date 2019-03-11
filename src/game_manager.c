@@ -23,7 +23,7 @@ void put_background(sfSprite *sprite, sfRenderWindow *window)
     if (sfSprite_getTexture(sprite) != NULL)
         sfRenderWindow_drawSprite(window, sprite, NULL);
     else {
-        backgrnd = sfTexture_createFromFile("../ressources/bckgrnd.jpg", NULL);
+        backgrnd = sfTexture_createFromFile("./assets/bckgrnd.jpg", NULL);
         sfSprite_setTexture(sprite, backgrnd, sfTrue);
         sfSprite_setScale(sprite, scale);
         sfRenderWindow_drawSprite(window, sprite, NULL);

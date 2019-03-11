@@ -19,11 +19,12 @@ sfRenderWindow *create_window(int width, int height)
 {
     sfRenderWindow *window;
     sfVideoMode video_mode;
+    char *name = "MyHunter"; 
 
     video_mode.width = width;
     video_mode.height = height;
     video_mode.bitsPerPixel = 32;
-    window = sfRenderWindow_create(video_mode, "MyHunter", sfDefaultStyle, NULL);
+    window = sfRenderWindow_create(video_mode, name, sfDefaultStyle, NULL);
     sfRenderWindow_setFramerateLimit(window, 60);
     return (window);
 }
@@ -54,9 +55,8 @@ int main(int ac, char **av)
         nb_ducks = check_arg(av[1]);
     window = create_window(1920, 1080);
     while (sfRenderWindow_isOpen(window)) {
-        if (retried == 0) {
+        if (retried == 0)
             run_menu(window);
-        }
         run_game(window, nb_ducks);
         retried = 0;
         retried = run_end_menu(window);

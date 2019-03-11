@@ -6,8 +6,10 @@
 */
 #ifndef __MY_HUNTER_H__
 #define __MY_HUNTER_H__
+
 #include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Audio.h>
+
 typedef struct duck {
     float speed;
     int is_dead;
