@@ -16,10 +16,6 @@ void display_one_button(sfRenderWindow *window, button_t *button)
 
 void display_buttons(sfRenderWindow *window, button_t **buttons)
 {
-    int i = 0;
-
-    while (i < 2) {
+    for (int i = 0; i < 2; i++)
         display_one_button(window, buttons[i]);
-        i++;
-    }
 }

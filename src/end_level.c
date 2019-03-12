@@ -10,7 +10,7 @@
 
 void destroy_ducks(duck_t **ducks, int nb_ducks);
 
-void end_game(duck_t **ducks, sfSprite *background,int nb_ducks, sfText *score)
+void end_game(duck_t **ducks, sfSprite *background, int nb_ducks, sfText *score)
 {
     sfSprite_destroy(background);
     destroy_ducks(ducks, nb_ducks);

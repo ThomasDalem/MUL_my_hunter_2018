@@ -13,29 +13,6 @@
 #include <stdlib.h>
 #include "my_hunter.h"
 
-char *convert_to_string(int number)
-{
-    char *str;
-    int num = number;
-    int num2 = number;
-    int nb_char = 0;
-    int i = 0;
-
-    while (num > 0) {
-        num /= 10;
-        nb_char++;
-    }
-    str = malloc(sizeof(char) * nb_char + 1);
-    while (i < nb_char) {
-        str[i] = num2 % 10 + '0';
-        num2 /= 10;
-        i++;
-    }
-    str[i] = '\0';
-    my_revstr(str);
-    return (str);
-}
-
 sfText *init_text(void)
 {
     sfFont *font = sfFont_createFromFile("./assets/BebasNeue_Regular.otf");
@@ -46,21 +23,26 @@ sfText *init_text(void)
     return (text);
 }
 
-char *concat_str(char const *str1, char const *str2)
+void add_text_beginning(char *str)
 {
-    char *str = malloc(sizeof(char) * (my_strlen(str1) + my_strlen(str2) + 1));
-
-    my_strcpy(str, str1);
-    my_strcat(str, str2);
-    return (str);
+    str[0] = 'M';
+    str[1] = 'o';
+    str[2] = 'n';
+    str[3] = 'e';
+    str[4] = 'y';
+    str[5] = ':';
+    str[6] = ' ';
+    str[7] = '\0';
 }
 
 void display_score(sfText *text, infos_t *game_infos, sfSprite *health, sfRenderWindow *window)
 {
-    char *str_score = convert_to_string(game_infos->score);
-    char *str_begin = "Score:";
-    char *new_str = concat_str(str_begin, str_score);
-    
+    char *str_score = my_int_to_str(game_infos->score);
+    int score_size = my_strlen(str_score);
+    char *str = malloc(sizeof(char) * (7 + score_size + 1));
+
+    add_text_beginning(str);
+    my_strcat(str, str_score);
     display_heatlh(window, health, game_infos->lives);
-    sfText_setString(text, new_str);
+    sfText_setString(text, str);
 }

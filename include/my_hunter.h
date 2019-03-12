@@ -45,6 +45,7 @@ void my_putstr(char const *str);
 int my_strlen(char const *str);
 char *my_strcpy(char *dest, char const *src);
 int my_getnbr(char const *str);
+char *my_int_to_str(int nb);
 
 void reset_ducks(duck_t **ducks, infos_t *game_inf, sfRenderWindow *window);
 void move_ducks(duck_t **ducks, int nb_ducks, float time);

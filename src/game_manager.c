@@ -30,6 +30,20 @@ void put_background(sfSprite *sprite, sfRenderWindow *window)
     }
 }
 
+void free_sounds(infos_t *game_infos)
+{
+    sfSound_destroy(game_infos->duck_sound);
+    sfSound_destroy(game_infos->sound);
+    sfSoundBuffer_destroy(game_infos->sound_buffer);
+    sfSoundBuffer_destroy(game_infos->sound_buffer2);
+}
+
+void free_objects(sfSprite *sprite1, sfSprite *sprite2)
+{
+    sfSprite_destroy(sprite1);
+    sfSprite_destroy(sprite2);
+}
+
 void run_game(sfRenderWindow *window, int nb_ducks)
 {
     sfClock *clock = sfClock_create();
@@ -54,8 +68,9 @@ void run_game(sfRenderWindow *window, int nb_ducks)
         display_score(text, game_inf, health, window);
         sfRenderWindow_display(window);
     }
-    sfSound_stop(game_inf->duck_sound);
+    free_sounds(game_inf);
     end_game(ducks, background, nb_ducks, text);
+    free_objects(health, cursor);
     write(1, "Score : ", 8);
     my_put_nbr(game_inf->score);
     write(1, "\n", 1);

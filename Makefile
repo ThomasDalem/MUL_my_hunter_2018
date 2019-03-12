@@ -23,9 +23,10 @@ SRC	=	src/main.c			\
 		src/game_functions.c		\
 		src/end_manager.c		\
 		src/health_displayer.c		\
+		src/my_int_to_str.c		\
 		src/analyse_event.c
 
-FLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio -L./src/lib -lmy -Iinclude
+FLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-audio -L./src/lib -lmy -Iinclude -g3
 
 LIBPATH	=	./src/lib/
 
